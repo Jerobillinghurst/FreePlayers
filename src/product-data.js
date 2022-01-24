@@ -15,7 +15,7 @@ const products = [
     name: "The Witcher: Wild Hunt",
     productType: "AVENTURA/ARPG/ACCION",
     price: 1150,
-    rating: 4,
+    rating: 5,
     image:
       "https://www.giantbomb.com/a/uploads/scale_small/0/3699/2945734-the%20witcher%203%20-%20wild%20hunt.jpg",
     description:
