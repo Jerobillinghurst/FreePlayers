@@ -12,10 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import accounting from "accounting";
-import { actionTypes } from '../reducer';
-import { useStateValue } from '../StateProvider';
-
-
+import { Delete } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,43 +25,27 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: "56.25%", // 16:9
   },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
+  /*CardActions:{
+    display:"flex",
+    justifyContent:"space-between",
+    textAlign:"center",
+  }*/
+
+  cardRating : {
+    display:"flex",
+
+  }
+
 }));
 
-export default function Product({product : {id,name,productType,image,price,rating,description}}) {
+export default function CheckoutCard({product : {id,name,productType,image,price,rating,description}}) {
   const classes = useStyles();
-  const [{basket},dispatch]=useStateValue();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const addToBasket=()=>{
-    dispatch({
-      type:actionTypes.ADD_TO_BASKET,
-      item:{
-        id,
-        name,
-        productType,
-        image,
-        price,
-        rating,
-        description,
-      }
-    })
-  }
-
-  
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -78,45 +59,24 @@ export default function Product({product : {id,name,productType,image,price,rati
           </Typography>
         }
         title={name}
-        subheader=" Con Stock"
+        subheader="Con Stock"
       />
       <CardMedia
         className={classes.media}
         image={image}
         title={name}
+        id={id}
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-        {productType}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-      <IconButton aria-label='Add to Cart'onClick={addToBasket}>
-          <AddShoppingCartIcon fontSize='small'/>
-        </IconButton>
+      <CardActions disableSpacing className={classes.CardActions}>
+      <div className={classes.cardRating}>
         {Array(rating)
           .fill()
           .map((_, i) => (
             <p>&#11088;</p>
           ))}
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+       </div>  
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>{description}
-          </Typography>
-          
-        </CardContent>
-      </Collapse>
+     
     </Card>
   );
 }

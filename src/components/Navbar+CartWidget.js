@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import { Badge } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,21 +33,28 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="fixed" className = {classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          </IconButton>
-          <div className={classes.grow} />
-          <Typography variant="h6"color='textPrimary' component="p">
-            FreePlayers
-          </Typography>
+            <Link to="/">
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <div className={classes.grow} />
+              <Typography variant="h6"color='textPrimary' component="p">
+                FreePlayers
+              </Typography>
+              </IconButton>
+              </Link>
           <div className={classes.button}>
               <Button variant='outlined'>
               <strong>Sign in</strong>
               </Button>
+
+          {/* ABAJO SE ENCUENTRA EL ICONO DE CARTWIDGET*/}
+          <Link to="checkout-page">
             <IconButton aria-label='show cart items' color="inherit">
                 <Badge badgeContent={2}color='secondary'>
                 <ShoppingCart fontSize='large' color='primary'/>
                 </Badge>
             </IconButton>
+            </Link>
+
           </div>  
         </Toolbar>
       </AppBar>
