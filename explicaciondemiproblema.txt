@@ -1,4 +1,0 @@
-En el archivo "Products.js" realice un product.map para poder extraer y organizar (con grid) los datos del archivo "Product-data"
-Despues cuando lo quiero pasar al archivo "Product.js", en la funcion export extraigo todo el contenido del array "product"
-que esta en "product-data".
-mi problema es que me tira unos warning y no estaria pudiendo resolverlos.
